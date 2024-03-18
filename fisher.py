@@ -1,7 +1,7 @@
 """
   Create By Jared on $Date
 """
-from flask import Flask
+from flask import Flask, make_response
 
 # from config import DEBUG
 
@@ -17,6 +17,26 @@ app.config.from_object('config')
 @app.route('/hello')
 def hello_world():
     return "Hello World!"
+
+
+@app.route('/html')
+def hello_html():
+    # This is default setting:
+    # status code 200,404,301
+    # content-type http headers
+    # content-type = text/html
+    # Response
+    return "<h1>Hello World! This is Html</h1>"
+
+
+@app.route('/testResponse')
+def test_response():
+    headers = {
+        'content-type': 'text/plain'
+    }
+    response = make_response('<html></html>', 404)
+    response.headers = headers
+    return response
 
 
 # app.add_url_rule('/hello', view_func=hello_world)
