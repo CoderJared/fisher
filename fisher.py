@@ -39,6 +39,26 @@ def test_response():
     return response
 
 
+@app.route('/redirect')
+def redirect():
+    headers = {
+        'content-type': 'text/plain',
+        'location': 'https://www.bing.com/'
+    }
+    response = make_response('<html></html>', 301)
+    response.headers = headers
+    return response
+
+
+@app.route('/redirect1')
+def redirect1():
+    headers = {
+        'content-type': 'text/plain',
+        'location': 'https://www.bing.com/'
+    }
+    return '<html></html>', 301, headers
+
+
 # app.add_url_rule('/hello', view_func=hello_world)
 
 if __name__ == '__main__':
