@@ -2,6 +2,7 @@
   Create By Jared on $Date
 """
 from flask import Flask, make_response
+from helper import is_isbn_or_key
 
 # from config import DEBUG
 
@@ -57,6 +58,16 @@ def redirect1():
         'location': 'https://www.bing.com/'
     }
     return '<html></html>', 301, headers
+
+
+@app.route('/book/search/<q>/<page>')
+def book_search(q, page):
+
+    # isbn isbn13 13个0到9的数字组成
+    # isbn10 10个0到9数字组成，含有一些‘-’
+    isbn_or_key = is_isbn_or_key(q)
+
+    pass
 
 
 # app.add_url_rule('/hello', view_func=hello_world)
